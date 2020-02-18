@@ -37,12 +37,12 @@ Notons au passage qu'on a donc:
 $$n\overline{x}{(n)}=\sum_{i=1}^{n}x_i  ~~~~(b)$$
 ​
 On définit maintenant $\sigma_{(n)}(x)$ l'écart-type des n élément $x_{i}$ et la variance $V_{(n)}(x)$ tels que:
-$$\sigma_{(n)}(x) = \sqrt{V_{(n)}(x)} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(x_i-\overline{x})^2}$$
+$$\sigma_{(n)}(x) = \sqrt{V_{(n)}(x)} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(x_i-\overline{x}_{(n)})^2}$$
 ​
 On peut écrire:
-$$V_{(n)}(x)=\frac{1}{n}\sum_{i=1}^{n}(x_{i}^{2}-2\overline{x}x_{i}+\overline{x}^{2})$$
-$$V_{(n)}(x)=\frac{1}{n}(\sum_{i=1}^{n}x_{i}^{2}-2\overline{x}\sum_{i=1}^{n}x_{i}+\sum_{i=1}^{n}\overline{x}^{2})$$
-$$V_{(n)}(x)=\frac{1}{n}(\sum_{i=1}^{n}x_{i}^{2}-2n\overline{x}\overline{x}+n\overline{x}^{2})$$
+$$V_{(n)}(x)=\frac{1}{n}\sum_{i=1}^{n}(x_{i}^{2}-2\overline{x}_{(n)}x_{i}+\overline{x}_{(n)}^{2})$$
+$$V_{(n)}(x)=\frac{1}{n}(\sum_{i=1}^{n}x_{i}^{2}-2\overline{x}_{(n)}\sum_{i=1}^{n}x_{i}+\sum_{i=1}^{n}\overline{x}_{(n)}^{2})$$
+$$V_{(n)}(x)=\frac{1}{n}(\sum_{i=1}^{n}x_{i}^{2}-2n\overline{x}_{(n)}\overline{x}_{(n)}+n\overline{x}_{(n)}^{2})$$
 ​
 Donc:
 $$V_{n}(x)=\frac{1}{n}\sum_{i=1}^{n}x_{i}^{2}-\overline{x}^{2}_{(n)} ~~~~(c)$$
@@ -57,23 +57,24 @@ $$\overline{x}_{(n+m)} = \frac{1}{n+m}\sum_{i=1}^{n+m}x_i$$
 $$\overline{x}_{(n+m)} = \frac{1}{n+m}(\sum_{i=1}^{n}x_i+\sum_{i=n+1}^{m}x_i)$$
 ​
 en utilisant l'équation (b) on en déduit:
-$$\overline{x}_{(n+m)} = \frac{1}{n+m}(n\overline{x}{(n)}+m\overline{x}{(m)})~~~~(c)$$
+$$\overline{x}_{(n+m)} = \frac{1}{n+m}(n\overline{x}_{(n)}+m\overline{x}_{(m)})~~~~(c)$$
 ​
 Calculons maintenant la variance de $\mathbb{X}_{(n+m)}$
 $$V_{(n+m)}(x) = \frac{1}{n+m}\sum_{i=1}^{n+m}(x_i-\overline{x})^2$$
 $$V_{(n+m)}(x) = \frac{1}{n+m}\sum_{i=1}^{n+m}x_i^{2}-\overline{x}_{(n+m)}^{2}$$
 $$V_{(n+m)}(x) = \frac{1}{n+m}(\sum_{i=1}^{n}x_i^{2}+\sum_{i=n+1}^{m}x_i^{2})-\overline{x}_{(n+m)}^{2}$$
 ​
-On définit la normalisation de l'ensemble ${\mathbb{X}_{(n)}}$,la transformation faisant passer $x_{i}$ à $X_{i}$ comme suit:
-$$X_{i}=\frac{x_{i}-\overline{x}}{\sigma(x)}~~~~(d)$$
+On définit la normalisation de l'ensemble ${\mathbb{X}_{(n)}}$,la transformation faisant passer $x_{i}$ à $X_{i}$ comme suit, dans l'ensemble $\mathbb{X}_{(n)}$:
+$$X_{(n)i}=\frac{x_{i}-\overline{x}}{\sigma_{(n)}(x)}~~~~(d)$$
 ​
-Notons au passage le résultat suivant:
+Notons au passage les résultats suivants:
 $$\overline{X}_{(n)}=\frac{1}{n\sigma_{(n)}(x)}\sum_{i=1}^{n}(x_i-\overline{x})=0~~~~(e)$$
+$$\sum_{i=1}^{n}X_{i}^2=\sum_{i=1}^{n}\frac{(x_{i}-\overline{x})^2}{\sigma(x)^2} = \sum_{i=1}^{n}\frac{(x_{i}-\overline{x})^2}{\frac{1}{n}\sum_{i=1}^{n}(x_i-\overline{x})^2} = \frac{n}{\sum_{i=1}^{n}(x_i-\overline{x})^2}\sum_{i=1}^{n}(x_{i}-\overline{x})^2=n~~~~(f)$$
 ​
 ​
 ## Application dans le cas d'une droite de régression linéaire:
 Nous nous intéressons ici à l'application de la méthode de la descente de gradient à une droite de régression linéaire telle que:
-$$\hat{Y} = F(X) = \theta_0+\theta_1X~~~~(e)$$
+$$\hat{Y} = F(X) = \theta_0+\theta_1X~~~~(g)$$
 ​
 La méthode consiste à s'approcher itérativement des valeurs optimales des $\theta$ i.e. celles pour lesquelles le coût est minimum. Les équations proposées pour résoudre ce problème ne sont valables qu'avec des données normalisées:
 ​
@@ -86,7 +87,7 @@ $$d\theta_0=\frac{\alpha}{n}\sum_{i=1}^{n}(\hat{Y_i}-Y_i) ~ et~~d\theta_1=\frac{
 ​
 avec $\alpha$ définit comme étant le "learning~ rate", $\hat{Y_i}$ la valeur prédite en $X_i$ et $Y_i$ la valeur normalisée de $y_i$.<br>
 On peut donc écrire:
-$$\frac{d\theta_0}{\alpha}=\frac{1}{n}\sum_{i=1}^{n}\hat{Y_i}-\overline{Y}{(n)}=\frac{1}{n}\sum{i=1}^{n}(\theta_0+\theta_1X_i)-\overline{Y}_{(n)}$$
+$$\frac{d\theta_0}{\alpha}=\frac{1}{n}\sum_{i=1}^{n}\hat{Y_i}-\overline{Y}{(n)}=\frac{1}{n}\sum_{i=1}^{n}(\theta_0+\theta_1X_i)-\overline{Y}_{(n)}$$
 ​
 En appliquant (e):
 $$\frac{d\theta_0}{\alpha}=\theta_0$$
@@ -101,15 +102,27 @@ $$\frac{d\theta_1}{\alpha}=\frac{\theta_0}{n}\sum_{i=1}^{n}X_i+\frac{\theta_1}{n
 
 Mais d'après (e), on a $\overline{X}_{(n)}=0$, d'où :
 $$\frac{d\theta_1}{\alpha}=\frac{\theta_1}{n}\sum_{i=1}^{n}X_i^2-\frac{1}{n}\sum_{i=1}^{n}X_iY_i$$
+et en appliquant (f), on trouve:
+$$\frac{d\theta_1}{\alpha}=\theta_1-\frac{1}{n}\sum_{i=1}^{n}X_iY_i$$
 
-Donc, $\theta_1\leftarrow\theta_1-\frac{\alpha}{n}(\theta_1\sum_{i=1}^{n}X_i^2-\sum_{i=1}^{n}X_iY_i)$
+
+Donc, $\theta_1\leftarrow\theta_1-\alpha(\theta_1-\frac{1}{n}\sum_{i=1}^{n}X_iY_i)$
+
+Notons, que nous avons:
+
+$$\sum_{i=1}^{n}X_iY_i =\sum_{i=1}^{n}\frac{(x_i-\overline{x}_{(n)})(y_i-\overline{y}_{(n)})}{\sigma_{(n)}(x)\sigma_{(n)}(y)}=\frac{1}{\sigma_{(n)}(x)\sigma_{(n)}(y)}\sum_{i=1}^{n}(x_iy_i-x_i\overline{y}_{(n)}-\overline{x}_{(n)}y_i+\overline{x}_{(n)}\overline{y}_{(n)})$$
+
+$$ => \sum_{i=1}^{n}X_iY_i =\frac{1}{\sigma_{(n)}(x)\sigma_{(n)}(y)}(\sum_{i=1}^{n}x_iy_i-n\overline{x}_{(n)}\overline{y}_{(n)})~~~~(h)$$
 
 Pour l'ensemble (n+m) on aura :
 $$\theta_0 \leftarrow \theta_0-{\alpha}\theta_0$$
-$$\theta_1\leftarrow\theta_1-\frac{\alpha}{n+m}(\theta_1\sum_{i=1}^{n+m}X_i^2-\sum_{i=1}^{n+m}X_iY_i)$$
+$$\theta_1\leftarrow\theta_1-\alpha(\theta_1-\frac{1}{n+m}\sum_{i=1}^{n+m}X_iY_i)$$
+
 Qui peut encore s'écrire:
-$$\theta_1\leftarrow\theta_1-\frac{\alpha}{n+m}[\sum_{i=1}^{n}(\theta_1X_i^2-X_iY_i)+\sum_{i=n+1}^{n+m}(\theta_1X_i^2-X_iY_i)]$$
-​
+$$\theta_1\leftarrow\theta_1-\alpha[\theta_1-\frac{1}{(n+m)\sigma_{(n+m)}(x)\sigma_{(n+m)}(y)}(\sum_{i=1}^{n+m}x_iy_i-(n+m)\overline{x}_{(n+m)}\overline{y}_{(n+m)})]$$
+Avec $\sigma_{(n+m)}(x)=\sqrt{V_{(n+m)}(x)}~~$ et $~~\sigma_{(n+m)}(y)=\sqrt{V_{(n+m)}(y)}$
+
+
 Enfin la dénormalisation des $\theta$:<br>
 D'après (d) et (f), on a:
 $$\frac{\hat{y}{i}-\overline{y}{(n)}}{\sigma_{(n)}(y)} = \theta_0 - \theta_1\frac{x_{i}-\overline{x}{(n)}}{\sigma{(n)}(x)}$$
@@ -134,6 +147,7 @@ $$\sigma{(n+1)}(x) = \sqrt{V_{(n+1)}}$$
 $$X_{n+1}=\frac{x_{n+1}-\overline{x}{(n+1)}}{\sigma{(n+1)}(x)}$$
 ​
 # Méthodologie:
+Analytique
 ​
 # Résultats:
 ​
