@@ -57,7 +57,7 @@ $$\overline{x}_{(n+m)} = \frac{1}{n+m}\sum_{i=1}^{n+m}x_i$$
 $$\overline{x}_{(n+m)} = \frac{1}{n+m}(\sum_{i=1}^{n}x_i+\sum_{i=n+1}^{m}x_i)$$
 ​
 en utilisant l'équation (b) on en déduit:
-$$\overline{x}_{(n+m)} = \frac{1}{n+m}(n\overline{x}_{(n)}+m\overline{x}_{(m)})~~~~(c)$$
+$$\overline{x}_{(n+m)} = \frac{1}{n+m}(n\overline{x}_{(n)}+m\overline{x}_{(m)})$$
 ​
 Calculons maintenant la variance de $\mathbb{X}_{(n+m)}$
 $$V_{(n+m)}(x) = \frac{1}{n+m}\sum_{i=1}^{n+m}(x_i-\overline{x})^2$$
