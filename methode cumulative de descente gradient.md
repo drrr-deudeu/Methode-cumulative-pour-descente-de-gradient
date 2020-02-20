@@ -9,7 +9,7 @@
 # Abstract:
 Dans ce document, nous détaillons un développement mathématiques et une méthode permettant de corriger/d'actualiser les paramètres d'un modèle linéaire post entraînement/ajustement en déterminant un terme de correction $\delta\theta$ issue d'un nouvel ensemble de données $\mathbb{E}_{n+1, n+m}$. La formule empirique du gain de temps obtenu avec cette méthode de correction est :
 ​
-$$ [2n+4n^2]$$
+$$ 2n+4n^2$$
 ​
 ​
 # Introduction:
@@ -20,11 +20,11 @@ $$ [2n+4n^2]$$
 [la prise en compte de nouvelles données permettant de corriger le modèle pour l'obtention de meilleures prédictions]
 [d'autres idées ?]<br>
 ​
-Nous détaillons dans ce document un développement mathématiques permettant de corriger les paramètres $\theta$ du modèle à partir d'un nouvel ensemble de données $\mathbb{E}_{(n+1, n+p)}$ sans devoir réentraîner le modèle avec l'ensemble de données initiales $\mathbb{E}_{(1, m)}$, puis nous exposons les résultats de cette nouvelle méthode en comparaison d'un réentraînement classique à partir de l'ensemble de données $\mathbb{E} = \mathbb{E}_{(1, n)} + \mathbb{E}_{(n+1, n+p)}$.
+Nous détaillons dans ce document un développement mathématiques permettant de corriger les paramètres $\theta$ du modèle à partir d'un nouvel ensemble de données $\mathbb{E}_{(n+1, n+m)}$ sans devoir réentraîner le modèle avec l'ensemble de données initiales $\mathbb{E}_{(1, n+m)}$, puis nous exposons les résultats de cette nouvelle méthode en comparaison d'un réentraînement classique à partir de l'ensemble de données $\mathbb{E}_{(1,n+m)} = \mathbb{E}_{(1, n)} + \mathbb{E}_{(n+1, n+m)}$.
 ​
 # Méthode:
 Soit $n \in \N$, tel que $1<n$ <br>
-Nous notons $\mathbb{E}$ l'ensemble des données issus de la réunion de $\mathbb{X}=\{x_1, \dots,x_i, \dots,x_n\}$ et $\mathbb{Y}=\{y_1, \dots,y_i, \dots,y_n\}$. <br>
+Nous notons $\mathbb{E}_{(1,n)}$ l'ensemble des données issus de la réunion de $\mathbb{X}_{(1,n)}=\{x_1, \dots,x_i, \dots,x_n\}$ et $\mathbb{Y}=\{y_1, \dots,y_i, \dots,y_n\}$. <br>
 ​
 Nous avons alors:
 $$\forall i\in \mathbb{N} \backslash (1 \leq i \leq n), (x_i, y_i) \in \mathbb{X}\times\mathbb{Y}=\mathbb{E}$$
@@ -136,15 +136,15 @@ $$THETA(1) = \theta_1\frac{\sigma_{(n)}(y)}{\sigma_{(n)}(x)}$$
 Le calcul des $\theta$ pour un ensemble $n+m$, ne nécessitent que la connaissance des grandeurs suivantes:
 - Le cardinal $n$, de notre ancien ensemble
 - Les $\theta$ normalisées sur l'ensemble $X_{(n)}$
-- Les grandeurs: $\overline{x}{(n)}$, $\overline{y}{(n)}$, $\sum_{i=1}^{n}x_i^{2}$, $\sum_{i=1}^{n}y_i^{2}$,$\sum_{i=1}^{n}X_i^{2}$,$\sum_{i=1}^{n}X_iY_i$
-- l'ensemble des ${X}{(m)}$ et des ${Y}{(m)}$
+- Les grandeurs: $\overline{x}{(n)}$, $\overline{y}{(n)}$, $\sum_{i=1}^{n}x_i^{2}$, $\sum_{i=1}^{n}y_i^{2}$,$\sum_{i=1}^{n}x_iy_i$
+- l'ensemble des ${X}_{i}$ et des ${Y}_{i}$ appartenant aux ensembles 
 ​
 ## Cas particulier:
 Avec l'ajoût d'une seule valeur $x_{n+1}$, on aura:
 $$\overline{x}{(n+1)}=\frac{1}{n+1}(n\overline{x}{(n)}+x_{n+1})$$
-$$V_{(n+1)}(x) = \frac{1}{n+m}(\sum_{i=1}^{n}x_i^{2}+x_{n+1}^{2})-\overline{x}{(n+m)}^{2}$$
-$$\sigma{(n+1)}(x) = \sqrt{V_{(n+1)}}$$
-$$X_{n+1}=\frac{x_{n+1}-\overline{x}{(n+1)}}{\sigma{(n+1)}(x)}$$
+$$V_{(n+1)}(x) = \frac{1}{n+m}(\sum_{i=1}^{n}x_i^{2}+x_{n+1}^{2})-\overline{x}_{(n+m)}^{2}$$
+$$\sigma_{(n+1)}(x) = \sqrt{V_{(n+1)}}$$
+$$X_{n+1}=\frac{x_{n+1}-\overline{x}_{(n+1)}}{\sigma_{(n+1)}(x)}$$
 ​
 # Méthodologie:
 Analytique
